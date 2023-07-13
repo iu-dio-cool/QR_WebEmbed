@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/QR_embed.iml" filepath="$PROJECT_DIR$/.idea/QR_embed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/QR_WebEmbed.iml" filepath="$PROJECT_DIR$/.idea/QR_WebEmbed.iml" />
     </modules>
   </component>
 </project>
