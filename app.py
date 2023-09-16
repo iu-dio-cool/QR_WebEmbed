@@ -6,6 +6,8 @@ import numpy as np
 from PIL import Image, ImageDraw
 from pyzbar import pyzbar
 import Steganographic_algorithm_dir.MOPNA
+import Steganographic_algorithm_dir.EMD2006
+import Steganographic_algorithm_dir.LSB
 import matplotlib.pyplot as plt
 import base64
 import io
@@ -16,7 +18,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index_test.html')
 
 
 # 功能1：隐藏
@@ -48,14 +50,14 @@ def hide():
     # print("要隐藏的数据长度" + str(s_data) + str(len(s_data)))
 
     # 选取隐藏算法:
-    img_out, recover_d_array = Steganographic_algorithm_dir.MOPNA.sole_fun(qr_code2, s_data)
+    # img_out, recover_d_array = Steganographic_algorithm_dir.MOPNA.sole_fun(qr_code2, s_data)
+    # img_out = Steganographic_algorithm_dir.MOPNA.EMD06_EMBED(qr_code2, s_data)
+    img_out = Steganographic_algorithm_dir.LSB.LSB_EMBED(qr_code2, s_data)
     '''
-        因为像素值超过255 所以保存tif图片
-        打开的和保存打开的 不一样，image.show() 因为位深度，所以需要astype(np.uint8)
+        算法接口：输入一个图片，输出一个图片数组
     '''
 
     # img_out = img_out.reshape(shape1, shape2)
-    img_out = Image.fromarray(img_out.astype('uint8'))
     # 将图片转换为Base64编码
     image_data = io.BytesIO()
     img_out.save(image_data, format='png')
@@ -83,8 +85,12 @@ def split():
     # 执行分割操作，生成两张二维码图片
     # 读取分割后的二维码图片数据
     shape1 = shape2 = (qrVersion * 4 + 17) * 5 + 4 * 5 * 2
-    recover_d_array = Steganographic_algorithm_dir.MOPNA.extract_data_from_image(img_array2, shape1, shape2)
-    img_out = recover_d_array
+    # recover_d_array = Steganographic_algorithm_dir.MOPNA.extract_data_from_image(img_array2, shape1, shape2)
+    recover_d_array = Steganographic_algorithm_dir.LSB.LSB_EXTRACT(input_image)
+    '''
+        提取代码接口：
+    '''
+    img_out = recover_d_array[:shape1*shape1]
     print(len(img_out), 'len=', len(recover_d_array), shape1)
     img_out = img_out * 255
     img_out = img_out.reshape(shape1, shape2)

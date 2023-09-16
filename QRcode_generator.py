@@ -31,11 +31,12 @@ def generate_qrcode(data, version, error_correction, box_size, border):
     image.save(filename)
 
 
-# 示例用法
-data = "Hello, World!"  # 要编码的数据
-version = 1  # 版本号
-error_correction = qrcode.constants.ERROR_CORRECT_M  # 纠错级别
-box_size = 5  # 盒子大小
-border = 4  # 边框大小
+if __name__ == '__main__':
+    # 示例用法
+    data = "Oppenheimer,4:30PM,CentralPark,seeyou."  # 要编码的数据
+    version = 7  # 版本号
+    error_correction = qrcode.constants.ERROR_CORRECT_M  # 纠错级别
+    box_size = 5  # 盒子大小
+    border = 4  # 边框大小
 
-generate_qrcode(data,version,error_correction,box_size,border)
+    generate_qrcode(data,version,error_correction,box_size,border)

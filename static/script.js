@@ -1,3 +1,34 @@
+document.getElementById('qrCode1').addEventListener('change', function() {
+  var previewImage = document.getElementById('previewImage1');
+  var fileInput = this;
+
+  if (fileInput.files && fileInput.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      previewImage.src = e.target.result;
+      previewImage.style.display = 'block';
+    };
+
+    reader.readAsDataURL(fileInput.files[0]);
+  }
+});
+document.getElementById('qrCode2').addEventListener('change', function() {
+  var previewImage = document.getElementById('previewImage2');
+  var fileInput = this;
+
+  if (fileInput.files && fileInput.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      previewImage.src = e.target.result;
+      previewImage.style.display = 'block';
+    };
+
+    reader.readAsDataURL(fileInput.files[0]);
+  }
+});
+
 $(document).ready(function() {
   // 功能1：隐藏
   $('#hideButton').click(function() {
@@ -57,4 +88,5 @@ $(document).ready(function() {
       }
     });
   });
+
 });
