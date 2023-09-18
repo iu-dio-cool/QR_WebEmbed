@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>二维码处理网页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 添加一些基本的样式，可以根据需要进行自定义 */
+    /* 调整图像的大小和位置 */
+    #outputImage1 {
+      position: relative;
+      width: 200px; /* 修改为所需的宽度 */
+      height: 200px; /* 修改为所需的高度 */
+      margin-top: 20px; /* 修改为所需的上边距 */
+      margin-bottom: 20px; /* 修改为所需的下边距 */
+    }
+
+    /* 调整图片容器的样式 */
+    #imageContainer {
+      margin-top: 40px; /* 修改为所需的上边距 */
+      margin-bottom: 40px; /* 修改为所需的下边距 */
+      text-align: center; /* 居中显示图片 */
+    }
+    /* 居中对齐隐藏和提取按钮 */
+    /* 居中对齐标题 */
+    body {
+      text-align: center;
+      background-image: url("https://ts1.cn.mm.bing.net/th/id/R-C.f52ef326e93e5653038c084be81788e7?rik=UHgHKtSaYiFR%2bw&riu=http%3a%2f%2fimg.gaosan.com%2fupload%2f201706%2f6363346207620384256073620.png&ehk=lSuDWkSxhyYmSH%2bNc7uOq79rfhTvc5dhiqBB2OgP%2fDE%3d&risl=&pid=ImgRaw&r=0"); /* 替换为你要使用的背景图片的路径 */
+      background-size: cover; /* 调整背景图片的适应方式 */
+    }
+    /* 侧边栏样式 */
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px; /* 可根据需要调整侧边栏宽度 */
+      background-color: #f2f2f2;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    /* 居中对齐的文本样式 */
+    .centered-text {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* 左对齐的文本样式 */
+    .left-aligned-text {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    #previewImage1 {
+    margin: 0 auto; /* 上下外边距为0，左右外边距自动居中 */
+    }
+    #previewImage2 {
+    margin: 0 auto; /* 上下外边距为0，左右外边距自动居中 */
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>使用说明</h2>
+    <p>本网页根据不同算法实现二维码嵌套二维码内容的信息隐藏</p>
+    <!-- 左对齐的文本 -->
+
+    <h3>隐藏：</h3>
+    <div class="left-aligned-text">
+    <p>1.选取不同二维码</p>
+    <p>2.点击隐藏生成加密后图像</p>
+    </div>
+    <h3>提取：</h3>
+    <div class="left-aligned-text">
+    <p>1.选取怀疑隐藏了秘密信息的二维码</p>
+    <p>2.点击提取，如果成功将显示被藏二维码，反之出现警告</p>
+    </div>
+    <!-- 添加更多使用说明内容 -->
+
+  </div>
+
+  <div style="margin-left: 250px;"> <!-- 通过设置边距，将主要内容区域与侧边栏分隔开 -->
+  <h1>功能：隐藏</h1>
+  <input type="file" id="qrCode1" accept="image/*">
+  <img id="previewImage1" src="#" alt="Preview" style="display: none;">
+
+  <input type="file" id="qrCode2" accept="image/*">
+  <img id="previewImage2" src="#" alt="Preview" style="display: none;">
+  <button id="hideButton">隐藏</button>
+  <h2>输出：</h2>
+  <div id="imageContainer1" class="image-container"></div> <!-- 图片容器 -->
+
+  <hr>
+  
+  <h1>功能：提取</h1>
+  <input type="file" id="inputImage" accept="image/*">
+  <label for="qrVersion">被隐藏二维码版本号：</label>
+  <input type="text" id="qrVersion" placeholder="请输入版本号">
+  <button id="splitButton">提取</button>
+  <h2>输出：</h2>
+  <div id="imageContainer2" class="image-container"></div> <!-- 图片容器 -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="../static/script.js"></script>
+
+</body>
+
+</html>
